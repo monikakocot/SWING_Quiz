@@ -6,12 +6,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+/*
+In this packege we have Quiz with possibiliy to answer YES or NO. In this package you have List of Questions
+defined in .txt type file. By using 'setQuestionProvider' from interfejs 'Question Provider' you can choose the file with questions.
+To define if question is correct here we have class 'Question' and 'QuestionEnum'
+
+The code is the same like in classQuestion packege. Here we use class FileQuestionProvider instead of  class with
+List of question like 'MyQuestions()'
+ */
+
 public class Main extends JFrame implements ActionListener {
 
     private QuestionProvider questionProvider;
-
     private List<Question> questions;
-
 
     private JLabel label = new JLabel();
     private JButton yesButton;
@@ -28,11 +35,9 @@ public class Main extends JFrame implements ActionListener {
 
     public Main() {
 
+        //here we have special Class File Question Provider which is able to read a file
         setQuestionProvider(new FileQuestionProvider("questions.txt"));
-
-
         questions = questionProvider.getQuizQuestions();
-
 
         setFrameDefualtProperties();
         addButtonsAndLabelToLayout();

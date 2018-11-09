@@ -6,6 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+/*
+In this packege we have Quiz with possibiliy to answer YES or NO. In this package you have List of Questions
+defined in district classes. By using 'setQuestionProvider' from interfejs 'Question Provider' you can choose the class with questions.
+To define if question is correct here we have class 'Question' and 'QuestionEnum'
+ */
+
 public class Main extends JFrame implements ActionListener {
 
     /*
@@ -13,9 +19,8 @@ public class Main extends JFrame implements ActionListener {
      We do not say exactly what class it will be
      This class must implement the QuestionProvider interface
      */
+    // questions for our program, which we collect using the questionsProvider object
     private QuestionProvider questionProvider;
-
-    // questions to our program, which we collect using the questionsProvider object
     private List<Question> questions;
 
     private JLabel label = new JLabel();
@@ -25,11 +30,10 @@ public class Main extends JFrame implements ActionListener {
     private int currentQuestion = 0;
     private int numberOfPoints = 0;
 
-   // private static final String YES_TEXT = "TAK"; now we have Enum
+    // private static final String YES_TEXT = "TAK"; now we have Enum
     //private static final String NO_TEXT = "NIE";  now we have Enum
 
-
-    // setter:)
+    //setter from interfejs
     public void setQuestionProvider(QuestionProvider questionProvider) {
         this.questionProvider = questionProvider;
     }
@@ -37,10 +41,9 @@ public class Main extends JFrame implements ActionListener {
     public Main() {
         // here we choose the object/class with list of questions
         //the class must implement the QuestionProvider interface
+        // questions are collected using the questionProvider Object and getQuizQuestionMethod
         setQuestionProvider(new MyQuestions());
-
         questions = questionProvider.getQuizQuestions();
-        // questions are collected using the questionProvider object
 
         setFrameDefualtProperties();
         addButtonsAndLabelToLayout();

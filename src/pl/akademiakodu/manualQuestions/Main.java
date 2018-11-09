@@ -1,15 +1,24 @@
 package pl.akademiakodu.manualQuestions;
 
+import pl.akademiakodu.classQuestions.QuestionEnum;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Main extends JFrame {
+/*
+Quiz with possibiliy to answer YES or NO. In this package you have only 1 question then you put manualy before game.
+ */
+public class Main extends JFrame implements ActionListener {
 
+    private int numberOfPoints = 0;
+    private JLabel labelPoints = new JLabel();
 
     public Main(){
-
         setFrameDefualtProperties();
         addButtonsAndLabelToLayout();
+
     }
 
     private void setFrameDefualtProperties(){
@@ -20,12 +29,15 @@ public class Main extends JFrame {
     }
 
     private void addButtonsAndLabelToLayout(){
-        JLabel label = new JLabel("Is Poland in Europe?");
 
+        JLabel label = new JLabel("Is Poland in Europe?");
         label.setHorizontalAlignment(JLabel.CENTER);
 
         JButton yesButton = new JButton("YES");
-        JButton noButton = new JButton("No");
+        yesButton.addActionListener(this);
+        JButton noButton = new JButton("NO");
+        noButton.addActionListener(this);
+
 
         add(label);
         add(yesButton);
@@ -33,9 +45,18 @@ public class Main extends JFrame {
 
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton jButton = (JButton) e.getSource();
+        if (jButton.getText().equals("YES")) {
+            numberOfPoints++;
+            JOptionPane.showMessageDialog(null, "You WIN! Your Number of points is: " + numberOfPoints);
+        } else {
+            JOptionPane.showMessageDialog(null, "Your Number of points is: " + numberOfPoints);
+        }
+    }
 
     public static void main(String[] args) {
-
         // write your code here
         SwingUtilities.invokeLater(new Runnable() {
             @Override
